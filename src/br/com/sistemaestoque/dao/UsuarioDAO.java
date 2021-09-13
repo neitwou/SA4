@@ -57,6 +57,39 @@ public class UsuarioDAO {
 	}
 	
 	
+	public void update(Usuario usuario) {
+		String sql = "UPDATE usuario SET login = ?, senha = ?"+"WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			//cria conexao
+			conn = ConnectionFactory.createConnectionToMySQL();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+			//add os valores para atualizar
+			pstm.setString(1, usuario.getLogin());
+			pstm.setString(2, usuario.getSenha());
+			//id do registro pra atualizar
+			pstm.setInt(3, usuario.getId());
+			//executar a query
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm!=null) {
+					pstm.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	public List<Usuario> getUsuarios(){
 		
 		String sql = "SELECT * FROM usuario";

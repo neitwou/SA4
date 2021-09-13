@@ -23,6 +23,13 @@ public class MainUsuario {
 		usuario.setLogin(str);
 		usuario.setSenha(str2);
 		contatoDao.save(usuario);
+		
+		//Atualizar usuario
+		Usuario u1 = new Usuario();
+		u1.setLogin("Marcio");
+		u1.setSenha("505050");
+		u1.setId(13);
+		contatoDao.update(u1);
 
 		//visualizaçao dos registro TODOS
 		for(Usuario u : contatoDao.getUsuarios()) {
