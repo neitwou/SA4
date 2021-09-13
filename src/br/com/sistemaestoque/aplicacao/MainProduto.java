@@ -44,6 +44,9 @@ public class MainProduto {
 		//visualizaçao dos registro TODOS
 		for(Produto p : produtoDao.getProdutos()) {
 		System.out.println("Produto: "+p.getNome());
+		
+		//deletar contato pelo id
+		produtoDao.deleteById(6);
 		}
 	}
 }

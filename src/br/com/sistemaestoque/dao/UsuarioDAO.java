@@ -141,4 +141,34 @@ public class UsuarioDAO {
 
 	}
 	
+	//DELETAR USUARIO
+	public void deleteById(int id) {
+		String sql = "DELETE FROM usuario WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			//cria conexao
+			conn = ConnectionFactory.createConnectionToMySQL();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+			//add os valores para atualizar
+			pstm.setInt(1, id);
+			//executar a query
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm!=null) {
+					pstm.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

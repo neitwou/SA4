@@ -34,6 +34,9 @@ public class MainUsuario {
 		//visualizaçao dos registro TODOS
 		for(Usuario u : contatoDao.getUsuarios()) {
 			System.out.println("Usuario: "+u.getLogin());
+			
+		//deletar contato pelo id
+			contatoDao.deleteById(6);
 		}
 	}
 
