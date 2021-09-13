@@ -22,19 +22,27 @@ public class MainProduto {
 		
 		System.out.println("Preço do produto: ");
 		int str2 = texto.nextInt();
-
-
-
-	//Adicionar produto
-	ProdutoDAO produtoDao = new ProdutoDAO();
-	Produto produto = new Produto();
-	produto.setNome(str);
-	produto.setPreco(str2);
-	produto.setDescricao(str3);
-	produtoDao.save(produto);
+		
+		
+		//Adicionar produto
+		ProdutoDAO produtoDao = new ProdutoDAO();
+		Produto produto = new Produto();
+		produto.setNome(str);
+		produto.setPreco(str2);
+		produto.setDescricao(str3);
+		produtoDao.save(produto);
 	
-	//visualizaçao dos registro TODOS
-	for(Produto p : produtoDao.getProdutos()) {
+		
+		//Atualizar PRODUTO
+		Produto p1 = new Produto();
+		p1.setNome("MonitorAOC");
+		p1.setPreco(31);
+		p1.setDescricao("Monitor LED AOC");
+		p1.setId(15);
+		produtoDao.update(p1);
+		
+		//visualizaçao dos registro TODOS
+		for(Produto p : produtoDao.getProdutos()) {
 		System.out.println("Produto: "+p.getNome());
 		}
 	}

@@ -15,6 +15,7 @@ public class ProdutoDAO {
 	
 	//CRUD (CREATE, READ, UPDATE E DELETE)
 	
+	//ADD PRODUTO
 	public void save(Produto produto) {
 		
 		String sql = "INSERT INTO produto(nome, preco, descricao) VALUES (?, ?, ?)";
@@ -55,7 +56,7 @@ public class ProdutoDAO {
 		}
 	}
 	
-	
+	//LISTAR PRODUTO
 	public List<Produto> getProdutos(){
 		
 		String sql = "SELECT * FROM produto";
@@ -104,6 +105,40 @@ public class ProdutoDAO {
 			}
 			
 			return produtos;
+	}
+
+	//ATUALIZAR PRODUTO
+	public void update(Produto produto) {
+		String sql = "UPDATE produto SET nome = ?, preco = ?, descricao = ?"+"WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			//cria conexao
+			conn = ConnectionFactory.createConnectionToMySQL();
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+			//add os valores para atualizar
+			pstm.setString(1, produto.getNome());
+			pstm.setInt(2, produto.getPreco());
+			pstm.setString(3, produto.getDescricao());
+			//id do registro pra atualizar
+			pstm.setInt(4, produto.getId());
+			//executar a query
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm!=null) {
+					pstm.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }

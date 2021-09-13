@@ -16,6 +16,7 @@ public class UsuarioDAO {
 	
 	//CRUD (CREATE, READ, UPDATE E DELETE)
 	
+	//ADD USUARIO
 	public void save(Usuario usuario) {
 		
 		String sql = "INSERT INTO usuario(login, senha) VALUES (?, ?)";
@@ -56,7 +57,7 @@ public class UsuarioDAO {
 		}
 	}
 	
-	
+	//ATUALIZAR USUARIO
 	public void update(Usuario usuario) {
 		String sql = "UPDATE usuario SET login = ?, senha = ?"+"WHERE id = ?";
 		Connection conn = null;
@@ -89,7 +90,7 @@ public class UsuarioDAO {
 		}
 	}
 	
-	
+	//LISTAR USUARIO
 	public List<Usuario> getUsuarios(){
 		
 		String sql = "SELECT * FROM usuario";
