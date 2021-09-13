@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import br.com.sistemaestoque.dao.ProdutoDAO;
 import br.com.sistemaestoque.model.Produto;
+import br.com.sistemaestoque.model.Usuario;
 
 public class MainProduto {
 	
@@ -32,5 +33,9 @@ public class MainProduto {
 	produto.setDescricao(str3);
 	produtoDao.save(produto);
 	
+	//visualizaçao dos registro TODOS
+	for(Produto p : produtoDao.getProdutos()) {
+		System.out.println("Produto: "+p.getNome());
+		}
 	}
 }

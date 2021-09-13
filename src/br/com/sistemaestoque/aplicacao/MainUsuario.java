@@ -24,6 +24,10 @@ public class MainUsuario {
 		usuario.setSenha(str2);
 		contatoDao.save(usuario);
 
+		//visualizaçao dos registro TODOS
+		for(Usuario u : contatoDao.getUsuarios()) {
+			System.out.println("Usuario: "+u.getLogin());
+		}
 	}
 
 }
